@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.sqldelight)
+    id("maven-publish")
 }
 
 kotlin {
@@ -60,6 +61,15 @@ sqldelight {
     databases {
         create("AppDatabase") {
             packageName.set("com.jetbrains.spacetutorial.cache")
+        }
+    }
+}
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.gradle.sample"
+            artifactId = "library"
+            version = "1.1"
         }
     }
 }
